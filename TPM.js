@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         CDB Alert
 // @namespace    http://tampermonkey.net/
-// @version      2.3
+// @version      2.4
 // @description  Alert Discord per timer CDB sul server "DiviziacoTD IT FoE Hub"
 // @author       DiviziacoTD, Arvahall
-// @match        https://*.forgeofempires.com/*
+// @match        https://itX.forgeofempires.com/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
@@ -20,6 +20,9 @@
   // ═══════════════════════════════════════════════════════════════════════════
   // CONFIGURAZIONE UTENTE
   // ═══════════════════════════════════════════════════════════════════════════
+
+  // MONDO - Sopra, dove leggi "@match" c'è itX: sostituisci la X col mondo configurato per la tua Gilda
+  // A:1, B:2, C:3, D:4, E:5, F:6, G:7, H:8, J:9, K:10, L:11 - Quindi se giochi su Cisgard sarà https://it3.forgeofempires.com/*
 
   // CONNESSIONE SERVER - Richiedi l'url a DiviziacoTD
   const WS_URL = 'INSERIREQUIURL';
