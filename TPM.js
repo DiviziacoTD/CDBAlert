@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CDB Alert
 // @namespace    http://tampermonkey.net/
-// @version      2.4
+// @version      2.5
 // @description  Alert Discord per timer CDB sul server "DiviziacoTD IT FoE Hub"
 // @author       DiviziacoTD, Arvahall
 // @match        https://itX.forgeofempires.com/*
@@ -38,6 +38,7 @@
   // NON MODIFICARE SOTTO QUESTA RIGA
   // ═══════════════════════════════════════════════════════════════════════════
 
+  const ALERT_THRESHOLDS = [180, 60, 30];
   const sentAlerts = new Map();
   let ws = null;
   let wsReady = false;
@@ -65,7 +66,20 @@
         if (msg.type === 'auth_success') {
           wsReady = true;
           console.log(`[CDB] ✅ Connesso al bot Discord - Gilda: ${msg.guild_name}`);
-          checkTimers(); 
+          checkTimers();
+          // Se i dati CDB sono già in memoria, li manda subito
+          const adjacent = getAdjacentToOwnSectors(lastProvinces);
+          if (adjacent.length > 0) {
+            ws.send(JSON.stringify({
+              type: 'map_update',
+              guild_id: ExtGuildID,
+              sectors: adjacent.map(p => ({
+                name: p.title || String(p.id),
+                lockedUntil: p.lockedUntil
+              }))
+            }));
+            console.log('[CDB] 🗺️ Mappa inviata al bot (post auth)');
+          }
         }
       } catch (e) {}
     };
@@ -143,6 +157,18 @@
 
       const adjacent = getAdjacentToOwnSectors(provinces);
       console.log(`[CDB] 🗺️ ${provinces.length} settori | ${adjacent.length} adiacenti monitorati`);
+
+      // Invia lista settori adiacenti al bot per il comando !prossimi
+      if (wsReady && adjacent.length > 0) {
+        ws.send(JSON.stringify({
+          type: 'map_update',
+          guild_id: ExtGuildID,
+          sectors: adjacent.map(p => ({
+            name: p.title || String(p.id),
+            lockedUntil: p.lockedUntil
+          }))
+        }));
+      }
 
       checkTimers();
     } catch (e) {
