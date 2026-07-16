@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CDB Alert
 // @namespace    http://tampermonkey.net/
-// @version      2.5
+// @version      2.6
 // @description  Alert Discord per timer CDB sul server "DiviziacoTD IT FoE Hub"
 // @author       DiviziacoTD, Arvahall
 // @match        https://itX.forgeofempires.com/*
@@ -10,10 +10,10 @@
 // ==/UserScript==
 
 (function waitForFoE() {
-  if (typeof FoEproxy === 'undefined' || typeof GuildFights === 'undefined' || !GuildFights.MapData) {
+  if (typeof FoEproxy === 'undefined') {
     setTimeout(waitForFoE, 5000);
     return;
-  }
+}
 
 'use strict';
 
