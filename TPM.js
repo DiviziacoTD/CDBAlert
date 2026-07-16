@@ -94,7 +94,7 @@
   }
 
   function getAdjacentToOwnSectors(provinces) {
-    const myParticipantId = GuildFights.MapData.battlegroundParticipants
+    const myParticipantId = Guild_fights.MapData.battlegroundParticipants
       .find(p => p.clan.id === ExtGuildID)?.participantId;
 
     if (!myParticipantId) return [];
