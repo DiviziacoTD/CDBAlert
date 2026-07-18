@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CDB Alert
 // @namespace    http://tampermonkey.net/
-// @version      2.7
+// @version      2.8
 // @description  Alert Discord per timer CDB sul server "DiviziacoTD IT FoE Hub"
 // @author       DiviziacoTD, Arvahall
 // @match        https://itX.forgeofempires.com/*
@@ -69,11 +69,12 @@
           // Se i dati CDB sono già in memoria, li manda subito
           const adjacent = getAdjacentToOwnSectors(lastProvinces);
           if (adjacent.length > 0) {
+            const provinceData = ProvinceMap.ProvinceData();
             ws.send(JSON.stringify({
               type: 'map_update',
               guild_id: ExtGuildID,
               sectors: adjacent.map(p => ({
-                name: p.title || String(p.id),
+                name: provinceData.find(pd => pd.id === p.id)?.short || p.title || String(p.id),
                 lockedUntil: p.lockedUntil
               }))
             }));
@@ -161,11 +162,12 @@
 
       // Invia lista settori adiacenti al bot per il comando !prossimi
       if (wsReady && adjacent.length > 0) {
+        const provinceData = ProvinceMap.ProvinceData();
         ws.send(JSON.stringify({
           type: 'map_update',
           guild_id: ExtGuildID,
           sectors: adjacent.map(p => ({
-            name: p.title || String(p.id),
+            name: provinceData.find(pd => pd.id === p.id)?.short || p.title || String(p.id),
             lockedUntil: p.lockedUntil
           }))
         }));
@@ -189,9 +191,6 @@
     FoEproxy.removeHandler('GuildBattlegroundService', 'getBattleground', handleBattleground);
     if (ws) ws.close();
     console.log('[CDB] 🛑 Fermato manualmente');
-  };
-
-})();
   };
 
 })();
