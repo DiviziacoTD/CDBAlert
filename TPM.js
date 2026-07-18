@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CDB Alert
 // @namespace    http://tampermonkey.net/
-// @version      2.6
+// @version      2.7
 // @description  Alert Discord per timer CDB sul server "DiviziacoTD IT FoE Hub"
 // @author       DiviziacoTD, Arvahall
 // @match        https://itX.forgeofempires.com/*
@@ -38,7 +38,6 @@
   // NON MODIFICARE SOTTO QUESTA RIGA
   // ═══════════════════════════════════════════════════════════════════════════
 
-  const ALERT_THRESHOLDS = [180, 60, 30];
   const sentAlerts = new Map();
   let ws = null;
   let wsReady = false;
@@ -94,6 +93,8 @@
   }
 
   function getAdjacentToOwnSectors(provinces) {
+    if (!Guild_fights?.MapData?.battlegroundParticipants) return [];
+
     const myParticipantId = Guild_fights.MapData.battlegroundParticipants
       .find(p => p.clan.id === ExtGuildID)?.participantId;
 
@@ -188,6 +189,9 @@
     FoEproxy.removeHandler('GuildBattlegroundService', 'getBattleground', handleBattleground);
     if (ws) ws.close();
     console.log('[CDB] 🛑 Fermato manualmente');
+  };
+
+})();
   };
 
 })();
