@@ -55,6 +55,15 @@ CDB Alert monitora i timer dei settori del Campo di Battaglia e invia notifiche 
 
 Server Discord: [**DiviziacoTD's IT FoE Hub**](https://discord.com/invite/J9eNv7gkXk)  
 
+
+## ❤️ Sostieni il progetto
+
+Se trovi utile questo progetto e desideri sostenere il suo sviluppo, puoi offrirmi un caffè:
+
+[Sostieni DiviziacoTD su Buy Me a Coffee](https://buymeacoffee.com/diviziacotd?utm_source=chatgpt.com)
+
+Qualsiasi contributo è gradito e aiuta a mantenere e migliorare il progetto.
+
 ## 📜 Licenza
 
 Distribuzione gratuita per uso personale. Redistribuzione commerciale vietata senza autorizzazione scritta da parte dell'Amministratore.
