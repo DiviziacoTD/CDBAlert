@@ -8,7 +8,7 @@ CDB Alert monitora i timer dei settori del Campo di Battaglia e invia notifiche 
 
 ## ⚙️ Requisiti
 
-- [**FoE Helper**](https://foe-helper.com) installato e attivo
+- [**FoE Helper**](https://foe-helper.com) oppure [**Forge Hammer**](https://chromewebstore.google.com/detail/forge-hammer/kmicglnhmpaebfcoiojigbnepklclboa) installato e attivo
 - Userscript manager: Tampermonkey (o Greasemonkey/Violentmonkey/Userscripts)
 - Browser compatibile: Chrome, Firefox, Edge, Opera, Vivaldi, Safari
 - Token univoco: Generato da DiviziacoTD
@@ -42,7 +42,7 @@ CDB Alert monitora i timer dei settori del Campo di Battaglia e invia notifiche 
 ## 🔧 Risoluzione Problemi
 
 **Lo script non si connette:**
-- Verifica che FoE Helper sia aggiornato all'ultima versione
+- Verifica che FoE Helper / Forge Hammer sia aggiornato all'ultima versione
 - Apri la console browser (F12) per visualizzare eventuali errori
 - Richiedi supporto a DiviziacoTD allegando gli errori dalla console browser (F12)
 
